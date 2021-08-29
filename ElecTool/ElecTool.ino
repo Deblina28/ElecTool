@@ -125,6 +125,22 @@ void level()
 
     u8x8.drawString(0, 5, buf);
     Serial.println(ax);
+  }
 
 
+
+void strob()
+{
+
+while(1)
+{
+  digitalWrite(4, HIGH);
+  delay(an0);
+  
+  an0 = analogRead(A0) / 4;
+  
+  digitalWrite(4, LOW);
+  delay(an0);
+}
+}
 
