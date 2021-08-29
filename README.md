@@ -1,11 +1,8 @@
-# ElecTool
-An all-in-one handy hardware tool
-
 ## Inspiration
-Being engineering students, we realized how in industries and several other aspects of work, a person and especially an engineer needs to use different tools for the sole purpose of measuring. Hence we thought of building a hack that is an all-in-one solution for measuring requirements, which can also come in handy to beginner electricians. Many times we hear during the drilling of holes in walls, humans get shocked by rupturing live wires. So we thought of incorporating a live wire detector that can sense live wires. Along with that, we took inspiration from theodolites that were used to measure very tall structures, to build the height measuring device. 
+Being engineering students, we realized how in industries and several other aspects of work, a person and especially an engineer needs to use different tools for the sole purpose of measuring. Hence we thought of building a hack that is an all-in-one solution for measuring requirements, which can also come in handy to beginner electricians. Many times we hear during the drilling of holes in walls, humans get shocked by rupturing live wires. So we thought of incorporating a live wire detector that can sense live wires. Along with that, we took inspiration from theodolites that were used to measure very tall structures, to build the height measuring device.
 
 ## What it does
-It is an electronic tool that can measure if a surface is leveled or not, measure pretty high heights using a laser pointer, the concept of theodolites, RPM of rotating objects using the stroboscopic effect. And a live wire detector can be useful for measuring live wires behind walls of concealing wiring. 
+It is an electronic tool that can measure if a surface is leveled or not, measure pretty high heights using a laser pointer, the concept of theodolites, RPM of rotating objects using the stroboscopic effect. And a live wire detector can be useful for measuring live wires behind walls of concealing wiring.  The purpose of Laser theodolite was to give the electricians a rough Idea of how much wire to buy for tall buildings.  This can also be used by painter to estimate area of faces of buildings.
 
 ## How we built it
 ElecTool contains an accelerometer to measure the inclination angles. The level meter was pretty straight forward it senses the inclination on the X-axis. Upon tilting the board, the acceleration due to the gravity vector changes at an angle phi. Along with that using some trigonometry, we find the exact angle. 
