@@ -1,11 +1,58 @@
 #include "LIS3DHTR.h"
+#include <Arduino.h>
+#include <U8x8lib.h>
+
 #include <Wire.h>
 LIS3DHTR<TwoWire> LIS; 
 #define WIRE Wire
 
+U8X8_SSD1306_128X64_NONAME_HW_I2C u8x8(U8X8_PIN_NONE);
+
+int x = 0, y = 0, ch=0, lch=-1;
+
+
+void setup()
+{
+  pinMode(4,  OUTPUT);
+  pinMode(13, OUTPUT);
+  pinMode(A0, INPUT);
+
+
+  Serial.begin(115200);
+
+
+  LIS.begin(WIRE, 0x19);
+
+  delay(100);
+  LIS.setFullScaleRange(LIS3DHTR_RANGE_4G);
+  LIS.setOutputDataRate(LIS3DHTR_DATARATE_50HZ);
+  LIS.setHighSolution(true);
+
+  u8x8.begin();
+  u8x8.setPowerSave(0);
+
+  u8x8.setFont(u8x8_font_px437wyse700b_2x2_r);
+  u8x8.drawString(0, 2, "Welcome");
+  delay(1000);
+  u8x8.drawString(0, 2, "Level  ");
+
+}
+
+int ct=0;
+
+void loop()
+{
+  //rpm();
+  
+  //level();
+
+  theodolite();
+}
+
+
 
 char buf[10];
-float xraw = 0, yraw = 0, zraw = 0;
+float xraw = 0, yraw = 0, zraw = 0, an0=0.0;
 float ax = 0.0;
 
 void level()
@@ -20,9 +67,9 @@ void level()
   }
 
   itoa(ax, buf, 10);
-
+  
   Serial.println(ax);
-
+  
   if (ax < 10 && ax >= 0)
   {
     buf[1] = ' ';
@@ -31,5 +78,7 @@ void level()
     buf[4] = ' ';
   }
 
-
+  u8x8.drawString(0, 5, buf);
 }
+
+
