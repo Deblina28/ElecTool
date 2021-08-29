@@ -82,3 +82,49 @@ void level()
 }
 
 
+  void theodolite()
+  {
+    digitalWrite(13, HIGH);
+    float sum = 0;
+    for (int i = 0; i < 100; i++)
+    {
+      xraw = xraw * 0.98 + 0.02 * LIS.getAccelerationX();
+      yraw = yraw * 0.98 + 0.02 * LIS.getAccelerationY();
+      zraw = zraw * 0.98 + 0.02 * LIS.getAccelerationZ();
+
+      ax = ax * 0.98 + 0.02 * (xraw / sqrt((yraw * yraw) + (zraw * zraw))) ;
+
+      sum += ax;
+    }
+
+    ax = sum / 100.0;
+    ax -= 0.069;
+    float height = ax * 100;
+
+    itoa(height, buf, 10);
+    if (height < 10 && ax >= 0)
+    {
+      buf[1] = ' ';
+      buf[2] = ' ';
+      buf[3] = ' ';
+      buf[4] = ' ';
+    }
+
+    else if (height >= 10 && height <= 99)
+    {
+      buf[2] = ' ';
+      buf[3] = ' ';
+      buf[4] = ' ';
+    }
+
+    else if (height >= 100 && height <= 999)
+    {
+      buf[3] = ' ';
+      buf[4] = ' ';
+    }
+
+    u8x8.drawString(0, 5, buf);
+    Serial.println(ax);
+
+
+
